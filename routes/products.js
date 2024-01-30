@@ -4,6 +4,8 @@ const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
 
+
+//.populate category shows all the data in category
 router.get(`/`, async (req, res) => {
   const productList = await Product.find().populate("category");
 
@@ -13,7 +15,8 @@ router.get(`/`, async (req, res) => {
   res.send(productList);
 });
 
-// To get a particular set of data in the list
+// To get a particular set of data in the list, -id means it should not be displayed , while name
+// and image will be displayed
 router.get(`/filter`, async (req, res) => {
   const productList = await Product.find().select("name image -_id");
 
