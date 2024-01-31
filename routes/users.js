@@ -13,6 +13,7 @@ router.get(`/`, async (req, res) => {
   res.send(userList);
 });
 
+// Get user profile
 router.get("/:id", async (req, res) => {
   const user = await User.findById(req.params["id"]).select("-password");
 
@@ -59,6 +60,7 @@ router.post("/login", async (req, res) => {
   if (!user) {
     return res.status(400).send("The user not found");
   }
+  console.log(user.id);
   if (user && bcrypt.compareSync(req.body.password, user.password)) {
     const token = jwt.sign(
       {
@@ -70,7 +72,12 @@ router.post("/login", async (req, res) => {
     );
     return res.status(200).send({ user: user.name, token: token });
   } else {
-    res.status(400).send("password is wrong");
+    res.status(400).send(
+      {
+        message:  "password is wrong",
+        success: false
+      }
+    );
   }
 });
 

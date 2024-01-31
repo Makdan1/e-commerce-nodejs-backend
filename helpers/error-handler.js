@@ -1,6 +1,7 @@
 
 
 function errorHandler(err, req, res, next){
+    console.log(err)
     if(err.name === 'UnauthorizedError'){
         res.status(401).json({message:"The user is not authorized"})
     }

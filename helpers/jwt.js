@@ -13,14 +13,13 @@ function authJwt() {
       {url: /\/api\/v1\/categories(.*)/ , methods: ['GET', 'OPTIONS'] },
       `${api}/users/login`,
       `${api}/users/register`,
-      ,
     ],
   });
 }
 async function isRevoked(req, payload, done) {
   if (!payload.isAdmin) {
-    done(null, true);
+    done;
   }
-  done();
+  done;
 }
 module.exports = authJwt;
