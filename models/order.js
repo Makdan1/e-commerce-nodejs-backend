@@ -52,7 +52,7 @@ required: true
       });
       
       orderSchema.set("toJSON", {
-        virtuals: true,
+        virtual: true,
       });
     
 
